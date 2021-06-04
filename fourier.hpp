@@ -1,5 +1,5 @@
-#ifndef fuhrer_hpp
-#define fuhrer_hpp
+#ifndef fourier_hpp
+#define fourier_hpp
 
 #include "arduinoFFT.h"
 #define SAMPLES 512                 //128             //SAMPLES-pt FFT. Must be a base 2 number. Max 128 for Arduino Uno.

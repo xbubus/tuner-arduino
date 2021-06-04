@@ -1,4 +1,4 @@
-#include "fuhrer.hpp"
+#include "fourier.hpp"
 
 arduinoFFT FFT = arduinoFFT();
 unsigned int samplingPeriod = round(1000000 * (1.0 / SAMPLING_FREQUENCY));
