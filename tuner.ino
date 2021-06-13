@@ -18,6 +18,14 @@ void setup()
     pinMode(MODE_SW,INPUT);
     pinMode(SQUARE_OUT,OUTPUT);
     pinMode(VOLTAGE_PIN,INPUT);
+
+
+    //440Hz squarewave
+    //TIMER3 registers
+    
+    TCCR3A = 0b00000000; //CTC mode, 256 prescaler, toggle OC3B pin (disabled at the beginning)
+    TCCR3B = 0b00001100;
+    OCR3AL = 70;         //toggle every 256*(70+1) pulse => 440,14Hz
     
     if(!init_display()) {
     Serial.println(F("SSD1306 allocation failed"));
@@ -36,6 +44,11 @@ void loop()
   }
   if(!aToneMode)
   {
+    //disable squarewave (COM3A0 = 0)
+    TCCR3A = 0b00000000;
+    //low on SQUARE OUT
+    PORTE &= ~(1<<4);
+    
     fill_fft_arrays();
     peak = find_freq();
     peak=peak*0.98; // strojenie stroika xd
@@ -47,11 +60,8 @@ void loop()
   }
   else
   {
-    //440Hz squarewave
-    //TIMER3 registers
-    TCCR3A = 0b00010000; //CTC mode, 256 prescaler, toggle OC3B pin 
-    TCCR3B = 0b00001100;
-    OCR3AL = 70;         //toggle every 256*(70+1) pulse => 440,14Hz
+    //enable squarewave (COM3A0 = 1)
+    TCCR3A = 0b00010000; //CTC mode, 256 prescaler, toggle OC3B pin
   }
 
 
