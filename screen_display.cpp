@@ -131,3 +131,8 @@ void display_tune(Note note)
         }
     }
 }
+
+void displayLowBattery()
+{
+  //
+}

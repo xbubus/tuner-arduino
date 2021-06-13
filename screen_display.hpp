@@ -11,7 +11,7 @@
 #define PERFECT_LED 38 //PD7
 #define TOO_HIGH_LED 39 //PD6
 #define TOO_LOW_LED 40//PD5
-//#define MODE_INFO_LED 41//PD4
+
 
 extern Adafruit_SSD1306 display;
 
@@ -24,6 +24,7 @@ bool init_display();
 void setup_display();
 void display_note(Note note);
 void display_tune(Note note);
+void displayLowBattery();
 
 
 #endif
